@@ -11,9 +11,10 @@ interface User {
 
 const Users = () => {
     const [users, setUsers] = useState<User[] | null>(null);
+    const url = window.location.href;
 
     useEffect(() => {
-        fetch('http://localhost:3000/users', {
+        fetch(url, {
             method: 'GET',
         }).then(async function (response) {
             if (response.ok) {

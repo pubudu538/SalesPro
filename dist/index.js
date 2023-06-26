@@ -13,9 +13,9 @@ app.use(express_1.default.static(path_1.default.join(__dirname, "../public")));
 //create database connection
 const conn = mysql.createConnection({
     host: 'localhost',
-    user: '<USER>',
-    password: '<PASSWORD>',
-    database: '<DB_NAME>'
+    user: 'test_user',
+    password: 'password',
+    database: 'testdb'
 });
 //connect to database
 conn.connect((err) => {
