@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const mysql = require('mysql');
 const cors = require("cors");
+require('dotenv').config();
 const app = (0, express_1.default)();
 app.use(cors());
 app.use(express_1.default.static(path_1.default.join(__dirname, "../public")));
@@ -43,7 +44,7 @@ app.get('/users', (req, res) => {
         res.send(JSON.stringify({ "status": 200, "error": null, "response": results }));
     });
 });
-const PORT = 3000;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || '3000';
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`App listening on port ${PORT}`);
 });

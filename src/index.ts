@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from "express";
 import path from "path";
 const mysql = require('mysql');
 const cors = require("cors");
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
@@ -46,6 +47,6 @@ app.get('/users', (req, res) => {
 
 const PORT = process.env.PORT || '3000';
 
-app.listen(PORT, '0.0.0.0', () => {
+app.listen( PORT, '0.0.0.0', () => {
   console.log(`App listening on port ${PORT}`);
 });
