@@ -46,6 +46,6 @@ app.get('/users', (req, res) => {
 
 const PORT = 3000;
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
