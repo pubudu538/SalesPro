@@ -1,1 +1,1 @@
-web: voila --Voila.ip=0.0.0.0 --port=$PORT --no-browser
+web: node dist/index.js host=0.0.0.0 --port=$PORT
