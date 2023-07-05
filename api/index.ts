@@ -26,13 +26,13 @@ conn.connect((err: any) => {
   }
 });
 
-// app.get("/", (req: Request, res: Response, next: NextFunction): void => {
-//   try {
-//     res.send("index.html");
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+app.get("/", (req: Request, res: Response, next: NextFunction): void => {
+  try {
+    res.send("index.html");
+  } catch (error) {
+    next(error);
+  }
+});
 
 app.get('/api/users', (req, res) => {
   let sql = "SELECT * FROM users";
@@ -55,10 +55,10 @@ app.get('/api/users', (req, res) => {
 });
 
 
-// const PORT = Number(process.env.PORT) || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
-// app.listen(PORT, '0.0.0.0', () => {
-//   console.log(`App listening on port ${PORT}`);
-// });
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`App listening on port ${PORT}`);
+});
 
-module.exports = app;
+// module.exports = app;
