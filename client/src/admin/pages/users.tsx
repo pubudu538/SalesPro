@@ -12,9 +12,10 @@ interface User {
 const Users = () => {
     const [users, setUsers] = useState<User[] | null>(null);
     const url = window.location.href;
+    var newUrl = url.replace('/users', '/api/users');
 
     useEffect(() => {
-        fetch(url, {
+        fetch(newUrl, {
             method: 'GET',
         }).then(async function (response) {
             if (response.ok) {

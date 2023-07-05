@@ -26,34 +26,39 @@ conn.connect((err: any) => {
   }
 });
 
-app.get("/", (req: Request, res: Response, next: NextFunction): void => {
-  try {
-    res.send("index.html");
-  } catch (error) {
-    next(error);
-  }
-});
+// app.get("/", (req: Request, res: Response, next: NextFunction): void => {
+//   try {
+//     res.send("index.html");
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
-app.get('/users', (req, res) => {
+app.get('/api/users', (req, res) => {
   let sql = "SELECT * FROM users";
   let query = conn.query(sql, (err: any, results: any) => {
     if (err) {
       console.log('Mysql Error...' + err);
+
+      const rows = [
+        { user: 'John Doe', gender: 'Male', role: 'Admin', status: 'Active' },
+        { user: 'Jane Smith', gender: 'Female', role: 'User', status: 'Inactive' },
+        { user: 'Alex Johnson', gender: 'Male', role: 'User', status: 'Active' },
+        { user: 'Sarah Davis', gender: 'Female', role: 'Admin', status: 'Active' },
+      ];
+
+      results = rows;
     }
 
-    const rows = [
-      { user: 'John Doe', gender: 'Male', role: 'Admin', status: 'Active' },
-      { user: 'Jane Smith', gender: 'Female', role: 'User', status: 'Inactive' },
-      { user: 'Alex Johnson', gender: 'Male', role: 'User', status: 'Active' },
-      { user: 'Sarah Davis', gender: 'Female', role: 'Admin', status: 'Active' },
-    ];
-    res.send(JSON.stringify({ "status": 200, "error": "sending default data", "response": rows }));
+    res.send(JSON.stringify({ "status": 200, "error": "sending default data", "response": results }));
   });
 });
 
 
-const PORT = Number(process.env.PORT) || 3000;
+// const PORT = Number(process.env.PORT) || 3000;
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`App listening on port ${PORT}`);
-});
+// app.listen(PORT, '0.0.0.0', () => {
+//   console.log(`App listening on port ${PORT}`);
+// });
+
+module.exports = app;
