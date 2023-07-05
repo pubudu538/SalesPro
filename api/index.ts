@@ -18,8 +18,8 @@ const conn = mysql.createConnection({
 });
 
 //connect to database
-conn.connect((err: any) =>{
-  if(err) {
+conn.connect((err: any) => {
+  if (err) {
     console.log('Mysql Error...' + err);
   } else {
     console.log('Mysql Connected...');
@@ -40,13 +40,20 @@ app.get('/users', (req, res) => {
     if (err) {
       console.log('Mysql Error...' + err);
     }
-    res.send(JSON.stringify({ "status": 200, "error": null, "response": results }));
+
+    const rows = [
+      { user: 'John Doe', gender: 'Male', role: 'Admin', status: 'Active' },
+      { user: 'Jane Smith', gender: 'Female', role: 'User', status: 'Inactive' },
+      { user: 'Alex Johnson', gender: 'Male', role: 'User', status: 'Active' },
+      { user: 'Sarah Davis', gender: 'Female', role: 'Admin', status: 'Active' },
+    ];
+    res.send(JSON.stringify({ "status": 200, "error": "sending default data", "response": rows }));
   });
 });
 
 
 const PORT = Number(process.env.PORT) || 3000;
 
-app.listen( PORT, '0.0.0.0', () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`App listening on port ${PORT}`);
 });
